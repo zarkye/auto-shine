@@ -1,0 +1,25 @@
+html{
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  
+}
+
+a:focus {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px #000; /* ou cor do seu tema */
+}
+a:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+a {
+  
+  transition: transform 0.3s ease;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
