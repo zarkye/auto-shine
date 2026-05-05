@@ -1,7 +1,7 @@
 'use client'
 import Footer from "@/components/Footer/footer";
 import Header from "@/components/Header/header";
-import { Button, Heading, VStack, Text, Steps, ButtonGroup, useSteps } from "@chakra-ui/react";
+import { Button, Heading, VStack, Text, Steps, ButtonGroup, useSteps, Separator } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft } from "react-icons/lu";
@@ -23,9 +23,9 @@ export default function Agendar() {
     }
 
     return (
-        <VStack as="main">
-            <VStack as="section" align="start" w="100vw" pt={28} pb={16} px={6}>
-                <Button onClick={handleNavigationToBack} variant="ghost" rounded="full" mb={6}>
+        <VStack as="main" gap={0}>
+            <VStack w="100%" as="section" align="start" maxW={1440} mx="auto" pt={28} pb={16} px={6}>
+                <Button onClick={handleNavigationToBack} variant="ghost" rounded="lg" mb={6}>
                     <LuArrowLeft />
                     <Text>
                         {steps.hasPrevStep ? "Voltar" : "Início"}
@@ -37,9 +37,12 @@ export default function Agendar() {
                 <Steps.RootProvider value={steps}>
                     <Steps.List>
                         {items.map((step, index) => (
-                            <Steps.Item key={index} index={index} title={step.title}>
-                                <Steps.Indicator />
-                                <Steps.Separator />
+                            <Steps.Item flex={1} key={index} index={index} title={step.title}>
+                                
+                                <Separator w="full" borderColor={
+                                        steps.value >= index ? "yellow.500" : "white"
+                                    } borderWidth={2} rounded="lg"/>
+                                
                             </Steps.Item>
                         ))}
                     </Steps.List>
@@ -48,13 +51,12 @@ export default function Agendar() {
                             {step.description}
                         </Steps.Content>
                     ))}
-                    
-
-                    <ButtonGroup size="sm" variant="outline">
+                    <VStack w='full' align="flex-end">
                         <Steps.NextTrigger asChild>
-                            <Button>Next</Button>
+                            <Button size="lg" rounded="lg" colorPalette="yellow">Continuar</Button>
                         </Steps.NextTrigger>
-                    </ButtonGroup>
+                    </VStack>
+
                 </Steps.RootProvider>
             </VStack>
         </VStack>
